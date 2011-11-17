@@ -192,6 +192,7 @@ The optional ***options*** parameter is an object with the following properties:
 *	***verbose*** - Set to true or false, provides verbose output
 *	***host*** - If relative urls are specified for http requests, this host will be used
 *	***port*** - If specied, this port will be used for all http requests
+*   ***repeat*** - The number of times the suite is meant to be executed
 
 The optional ***callback*** parameter is a function to call on completion of the suite.  This function is passed 4 parameters; # of successful tests, # of failed tests, # of aborted tests, a log object (see below).
 
