@@ -37,7 +37,7 @@ Results:
 	✓ google API returns results for paris hilton
 	=> 1 succeeded.
 
-** Let's put in multiple checks to make it interesting: **
+**Let's put in multiple checks to make it interesting:**
 
 	require('ssa').runSuite([
     {
@@ -56,7 +56,7 @@ Results:
 	✓ google API returns results for paris hilton
 	=> 1 succeeded.
 
-** Now add another test to the mix: **
+**Now add another test to the mix:**
 
 	require('ssa').runSuite([
     {
@@ -86,7 +86,7 @@ Results:
 	✓ google API returns results for george clooney
 	=> 2 succeeded.
 
-** I see a pattern here, let's use a template: **
+**I see a pattern here, let's use a template:**
 
 	require('ssa').runSuite([
 	{
@@ -110,7 +110,7 @@ Results:
 	=> 2 succeeded.
 
 
-** Let's say one test depended on the results of another: **
+**Let's say one test depended on the results of another:**
 
 	require('ssa').runSuite([
 	{
@@ -134,7 +134,7 @@ Results:
             this.assert.notEqual(bod.indexOf('This is Google&#39;s cache'), -1); }
 	}]);
 
-** And how about some other async call: **
+**And how about some other async call:**
 
 	require('ssa').runSuite([
     {
@@ -162,7 +162,7 @@ Results:
 	}]);
 
 
-## Reference ##
+##Reference##
 
 The SSA module has single function:
 
