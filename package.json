@@ -1,0 +1,22 @@
+{
+    "name": "ssa",
+    "version" : "0.1.1",
+    "description": "Stupid Simple Async - a testing framework",
+    "author": "Pete Diemert <pete_diemert@msn.com>",
+    "dependencies": {},
+    "devDependencies":{},
+    "engine": "node >= 0.4.12",
+    "main" : "./lib/index.js",
+    "keywords" : ["testing", "async", "vows", "apieasy", "rest"],
+    "repository" :
+    {
+        "type" : "git",
+        "url" : "https://git@github.com:pdiemert/ssa.git"
+
+    },
+    "bin" :
+    {
+        "ssa" : "./bin/cli.js"
+    }
+    
+}
