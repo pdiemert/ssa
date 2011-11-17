@@ -6,4 +6,4 @@ require('ssa').runSuite([
         {
             this.assert.equal(data.responseData.results.length, 4);
         }
-    }]);
+    }], {repeat:2});
