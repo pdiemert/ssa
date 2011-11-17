@@ -22,7 +22,7 @@ or
 A single js file can hold one or more test suites.
 
 
-** Here's an example testing a JSON Web API response: **
+**Here's an example testing a JSON Web API response:**
 
 	require('ssa').runSuite([
 	{
@@ -162,7 +162,6 @@ Results:
 	}]);
 
 
----
 ## Reference ##
 
 The SSA module has single function:
