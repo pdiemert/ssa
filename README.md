@@ -1,24 +1,29 @@
 #SSA
 ###Stupid Simple Asynchronous
-*a testing framework for node.js*
+>a testing framework for node.js
 
 
 Designed to make the task of testing web API and other async API as easy as possible.
 
 Installation:
+
 	npm install ssa
 
 Usage:
+
 	ssa
+
 This searches for a directory called /test or /spec.  All test suites in the directory are executed.
 
 or
+
 	ssa mytest.js
 
 A single js file can hold one or more test suites.
 
 
 ** Here's an example testing a JSON Web API response: **
+
 	require('ssa').runSuite([
 	{
 		test: 'google API returns results for paris hilton' ,
@@ -28,10 +33,12 @@ A single js file can hold one or more test suites.
     }]);
 
 Results:
+
 	✓ google API returns results for paris hilton
 	=> 1 succeeded.
 
 ** Let's put in multiple checks to make it interesting: **
+
 	require('ssa').runSuite([
     {
 		test: 'google can query' ,
@@ -45,11 +52,12 @@ Results:
     }]);
 
 Results:
+
 	✓ google API returns results for paris hilton
 	=> 1 succeeded.
 
-
 ** Now add another test to the mix: **
+
 	require('ssa').runSuite([
     {
 		test: 'google API returns results for paris hilton' ,
@@ -73,11 +81,13 @@ Results:
 	}]);
 
 Results:
+
 	✓ google API returns results for paris hilton
 	✓ google API returns results for george clooney
 	=> 2 succeeded.
 
 ** I see a pattern here, let's use a template: **
+
 	require('ssa').runSuite([
 	{
 		template: 'googlereq',
@@ -94,12 +104,14 @@ Results:
 	}]);
 
 Results:
+
 	✓ google API returns results for paris hilton
 	✓ google API returns results for george clooney
 	=> 2 succeeded.
 
 
 ** Let's say one test depended on the results of another: **
+
 	require('ssa').runSuite([
 	{
 		template: 'googlereq',
@@ -123,6 +135,7 @@ Results:
 	}]);
 
 ** And how about some other async call: **
+
 	require('ssa').runSuite([
     {
 		test: 'connect to flickr' , expect : function(err, api)
@@ -153,9 +166,10 @@ Results:
 ## Reference ##
 
 The SSA module has single function:
+
 	runSuite(suite, [options], [callback])
 
-Where *suite* is an array of objects.  
+Where ***suite*** is an array of objects.  
 Each object can be either a *test* or a *template*.
 A **test** object has the follow properties:
 
@@ -169,17 +183,18 @@ A **test** object has the follow properties:
 *	***data*** - Either text or an object that is passed as the body for any http request. (optional)
 *	***wait*** - Amount of time (in milliseconds) to wait before executing the test.  Note that if this test is dependent on another test the clock will not start ticking until the dependency completes. (optional)
 *	***expectCode*** - For http requests, the response code expected. (optional)
-*	***repeat*** - The number of times to repeat the test.  E
+*	***repeat*** - The number of times to repeat the test.  Every response is stored in the responses array described below. (optional)
 *	***expect*** - Either a function or an object. If a function then this function is called after the setup function and any http request to test some expectation.  If an object then each property value is expected to be a function with the property name used as a description name of the expectation.
 
 A **template** can have the same properties as above with the exception of http requests and instead of ***test*** property there is property called ***template*** which identifies the template name.
 
-The optional *options* parameter is an object with the following properties:
+The optional ***options*** parameter is an object with the following properties:
+
 *	***verbose*** - Set to true or false, provides verbose output
 *	***host*** - If relative urls are specified for http requests, this host will be used
 *	***port*** - If specied, this port will be used for all http requests
 
-The optional *callback* parameter is a function to call on completion of the suite.  This function is passed 4 parameters; # of successful tests, # of failed tests, # of aborted tests, a log object (see below).
+The optional ***callback*** parameter is a function to call on completion of the suite.  This function is passed 4 parameters; # of successful tests, # of failed tests, # of aborted tests, a log object (see below).
 
 Every function that is called by the framework has an available **this** reference which has the following properties:
 
