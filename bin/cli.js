@@ -10,6 +10,8 @@
         return;
     }
 
+    require('../lib/string.js');
+
     var fs = require('fs');
     var eyes = require('eyes');
     var path = require('path');
@@ -35,6 +37,9 @@
                 files = files.concat(fs.readdirSync('./test').map(function(e){return './test/' + e;}));
             if (path.existsSync('./spec'))
                 files = files.concact(fs.readdirSync('./spec').map(function(e){return './spec/' + e;}));
+
+            // strip out non-js
+            files = files.filter(function(e){return e.endsWith('.js')});
 
             if (files.length == 0)
                 throw "No tests specified and no test or spec directory";

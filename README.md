@@ -185,7 +185,7 @@ A **test** object has the follow properties:
 *	***repeat*** - The number of times to repeat the test.  Every response is stored in the responses array described below. (optional)
 *	***expect*** - Either a function or an object. If a function then this function is called after the setup function and any http request to test some expectation.  If an object then each property value is expected to be a function with the property name used as a description name of the expectation.
 
-A **template** can have the same properties as above with the exception of http requests and instead of ***test*** property there is property called ***template*** which identifies the template name.
+A **template** can have the same properties as above with the exception of http requests and instead of a ***test*** property there is property called ***template*** which identifies the template name.
 
 The optional ***options*** parameter is an object with the following properties:
 
