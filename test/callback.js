@@ -1,3 +1,5 @@
+// github issue #1
+
 function runSomething(callback){
     setTimeout(function(){
         callback(null, { val: 1 });

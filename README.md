@@ -168,6 +168,10 @@ The SSA module has single function:
 
 	runSuite(suite, [options], [callback])
 
+or
+
+    runSuite(suite, [callback])
+
 Where ***suite*** is an array of objects.  
 Each object can be either a *test* or a *template*.
 A **test** object has the follow properties:
@@ -187,12 +191,13 @@ A **test** object has the follow properties:
 
 A **template** can have the same properties as above with the exception of http requests and instead of a ***test*** property there is property called ***template*** which identifies the template name.
 
-The optional ***options*** parameter is an object with the following properties:
+The ***options*** parameter can be null or can be an object with the following optional properties:
 
 *	***verbose*** - Set to true or false, provides verbose output
 *	***host*** - If relative urls are specified for http requests, this host will be used
 *	***port*** - If specied, this port will be used for all http requests
 *   ***repeat*** - The number of times the suite is meant to be executed
+*   ***inlineLogging*** - By default all log messages are displayed at the end of the suite run.  Setting this option to true will cause messages to go to the console as they are logged.
 
 The optional ***callback*** parameter is a function to call on completion of the suite.  This function is passed 4 parameters; # of successful tests, # of failed tests, # of aborted tests, a log object (see below).
 
