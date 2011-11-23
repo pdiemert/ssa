@@ -2,7 +2,7 @@
 ;(function ()
 { // wrapper in case we're in module_context mode
 
-// windows: running "npm blah" in this folder will invoke WSH, not node.
+// windows: running "ssa blah" in this folder will invoke WSH, not node.
     if (typeof WScript !== "undefined")
     {
         WScript.echo("ssa does not work when run\n" + "with the Windows Scripting Host\n\n" + "'cd' to a different directory,\n" + "or type 'ssa.cmd <args>',\n" + "or type 'node ssa <args>'.");
