@@ -13,7 +13,7 @@ Usage:
 
 	ssa
 
-This searches for a directory called /test or /spec.  All test suites in the directory are executed.
+This searches for a directory called /test or /spec.  All test suites in the directory and sub-directories are executed.
 
 or
 
@@ -198,6 +198,7 @@ The ***options*** parameter can be null or can be an object with the following o
 *	***port*** - If specied, this port will be used for all http requests
 *   ***repeat*** - The number of times the suite is meant to be executed
 *   ***inlineLogging*** - By default all log messages are displayed at the end of the suite run.  Setting this option to true will cause messages to go to the console as they are logged.
+*   ***name*** - A name for the suite displayed in the output if specified
 
 The optional ***callback*** parameter is a function to call on completion of the suite.  This function is passed 4 parameters; # of successful tests, # of failed tests, # of aborted tests, a log object (see below).
 
