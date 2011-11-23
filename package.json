@@ -1,9 +1,9 @@
 {
     "name": "ssa",
-    "version" : "0.1.6",
+    "version" : "0.1.7",
     "description": "Stupid Simple Async - a testing framework",
     "author": "Pete Diemert <pete_diemert@msn.com>",
-    "dependencies": {},
+    "dependencies": {"findit":">= 0.1.1"},
     "devDependencies":{"zeromq" : ">= 0.5.1"},
     "engine": "node >= 0.4.12",
     "main" : "./lib/index.js",

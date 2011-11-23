@@ -15,6 +15,8 @@
     var fs = require('fs');
     var eyes = require('eyes');
     var path = require('path');
+    var findit = require('findit');
+
     var childp = require('child_process');
     var util = require('../lib/util.js');
 
@@ -33,13 +35,15 @@
         }
         else
         {
-            if (path.existsSync('./test'))
-                files = files.concat(fs.readdirSync('./test').map(function(e){return './test/' + e;}));
-            if (path.existsSync('./spec'))
-                files = files.concact(fs.readdirSync('./spec').map(function(e){return './spec/' + e;}));
+
+            files = files.concat(flattenDir('./test'));
+            files = files.concat(flattenDir('./spec'));
 
             // strip out non-js
-            files = files.filter(function(e){return e.endsWith('.js')});
+            files = files.filter(function(e)
+            {
+                return e.endsWith('.js')
+            });
 
             if (files.length == 0)
                 throw "No tests specified and no test or spec directory";
@@ -48,10 +52,31 @@
         filecount = files.length;
 
         startTest();
-        
+
     } catch(e)
     {
         putl('Error: ' + e.toString());
+    }
+
+    // Finds all files in dir and subdirs
+    function flattenDir(dir)
+    {
+        var files = [];
+
+        try
+        {
+            findit.sync(dir, function(f, s)
+            {
+                if (!s.isDirectory())
+                    files.push(f);
+
+            });
+        } catch(e)
+        {
+
+        }
+
+        return files;
     }
 
     function puts(s)
@@ -63,13 +88,14 @@
     {
         puts(s + '\n');
     }
+
     function finishAllTests()
     {
         if (filecount == 1)
             return;
 
         putl('==> ' + filecount + ' file(s) processed');
-        
+
         var sum = util.style(succeed + ' test' + (succeed != 1 ? 's' : '') + ' succeeded', 'green');
 
         if (fail > 0)
@@ -82,29 +108,29 @@
 
     function trim(str)
     {
-        str = str.replace(/^\s\s*/, ''),
-        ws = /\s/,
-        i = str.length;
+        str = str.replace(/^\s\s*/, ''),ws = /\s/,i = str.length;
         while (ws.test(str.charAt(--i)));
         return str.slice(0, i + 1);
 
     }
+
     function finishTest(file, out, code)
     {
         // Parse output
         if (code == 0)
         {
-            putl(out);
+            puts(out);
             var i = out.indexOf('=>');
             if (i != -1)
             {
-                var sum = out.substr(out.indexOf('=>')+2).split(',');
+                var sum = out.substr(out.indexOf('=>') + 2).split(',');
 
                 function parseNum(part)
                 {
                     var numpart = sum[part].split()[0];
-                    return parseInt(numpart.substr(numpart.indexOf('m')+1));
+                    return parseInt(numpart.substr(numpart.indexOf('m') + 1));
                 }
+
                 if (sum.length > 0)
                     succeed += parseNum(0);
                 if (sum.length > 1)
@@ -119,12 +145,12 @@
         }
 
         if (filecount > 1)
-            putl('==> ' + file);
+            putl('==> finished ' + file);
 
         //out = trim(out);
         //if (out.length > 0)
         //    putl(trim(out));
-        
+
         // Start next
         startTest();
     }
