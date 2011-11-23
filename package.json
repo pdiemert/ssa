@@ -1,6 +1,6 @@
 {
     "name": "ssa",
-    "version" : "0.1.8",
+    "version" : "0.1.9",
     "description": "Stupid Simple Async - a testing framework",
     "author": "Pete Diemert <pete_diemert@msn.com>",
     "dependencies": {"findit":">= 0.1.1"},
