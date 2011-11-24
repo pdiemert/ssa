@@ -11,6 +11,7 @@
     }
 
     require('../lib/string.js');
+    require('../lib/array.js');
 
     var fs = require('fs');
     var eyes = require('eyes');
@@ -94,7 +95,7 @@
         if (filecount == 1)
             return;
 
-        putl('==> ' + filecount + ' file(s) processed');
+        putl('==> ' + filecount + ' file(s) processed' + (error > 0 ? ', ' + util.style(error + ' failed', 'red') : ''));
 
         var sum = util.style(succeed + ' test' + (succeed != 1 ? 's' : '') + ' succeeded', 'green');
 
@@ -116,6 +117,7 @@
 
     function finishTest(file, out, code)
     {
+        //putl('got out (' + code + ') :' + out);
         // Parse output
         if (code == 0)
         {
@@ -139,13 +141,37 @@
                     aborted += parseNum(2);
             }
         }
+        else if (code == 1)
+        {
+            error++;
+
+            var lines = out.split('\n');
+            var ierr = lines.firstIndex(function(e) { return e.trim().startsWith('Error:'); });
+            if (ierr == undefined)
+                return;
+
+            var msg = lines[ierr].substr(lines[ierr].indexOf('Error:') + 6).trim();
+
+            // Find the line in the stack trace
+            while(++ierr < lines.length)
+            {
+                var m = /.*\((.*)\).*/.exec(lines[ierr]);
+                if (m && m.length == 2)
+                {
+                    var parts = m[1].split(':');
+                    var path = file.substr(file.indexOf('/'));
+                    if (parts[0].endsWith(path))
+                    {
+                        putl(util.style('Error: ' + msg + ' (' + file + ' @ line ' + parts[1] + ')', 'red'));
+                        break;
+                    }
+                }
+            }
+        }
         else
         {
             error++;
         }
-
-        if (filecount > 1)
-            putl('==> finished ' + file);
 
         //out = trim(out);
         //if (out.length > 0)
@@ -165,10 +191,17 @@
 
         var file = files.shift();
 
+        if (filecount > 1)
+            putl('==> ' + file);
+
         var prc = childp.spawn(process.argv[0], [file]);
 
         var out = '';
         prc.stdout.on("data", function(data)
+        {
+            out += data;
+        });
+        prc.stderr.on('data', function(data)
         {
             out += data;
         });
