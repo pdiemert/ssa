@@ -3,7 +3,12 @@
     "version" : "0.1.15",
     "description": "Stupid Simple Async - a testing framework",
     "author": "Pete Diemert <pete_diemert@msn.com>",
-    "dependencies": {"findit":">= 0.1.1", "eyes":">= 0.1.6"},
+    "dependencies": {
+        "eyes":">= 0.1.6",
+        "request" : ">= 2.9.152",
+        "node-assert-extras" : ">= 0.1.0",
+        "underscore" : ">= 1.3.1"
+    },
     "engine": "node >= 0.4.12",
     "main" : "./lib/index.js",
     "keywords" : ["testing", "async", "vows", "apieasy", "rest"],
