@@ -295,22 +295,17 @@ An object whose property names are names of tests that have been completed.  Eac
 ####log
 An object that manages logging.  This object has the following functions:
 
-*	####error(msg), warning(msg), info(msg), good(msg)####
-Adds a message to the log of the associated type. The type name will be one of ##error##, ##warning##, ##info##, ##good##.
-*	####out(type,msg)####
-Takes a type and message.  The type is a user defined text name and the message is a user defined object.
-*	####first(type)####
-Takes a type and returns the first message found of this type. See forEach for log message format.
-*	####filter(type)####
-Takes a type and returns all messages found of this type. See forEach for log message format.
-*	####forEach(fnc)####
-Calls fnc for each log item, passes log item.  Each log item object has the properties:
+*	**error(msg), warning(msg), info(msg), good(msg)** - Adds a message to the log of the associated type. The type name will be one of ##error##, ##warning##, ##info##, ##good##.
+*	**out(type,msg)** - Takes a type and message.  The type is a user defined text name and the message is a user defined object.
+*	**first(type)** - Takes a type and returns the first message found of this type. See forEach for log message format.
+*	**filter(type)** - Takes a type and returns all messages found of this type. See forEach for log message format.
+*	**forEach(fnc)** - Calls fnc for each log item, passes log item.  Each log item object has the properties:
 
 	* **type** - the text type name of the message
 	* **msg** - the message itself, is a user defined object
 	* **ts** - timestamp of when the message was logged
 	* **scope** - text name of scope, if nested, each scope is separated by /
-*	####newScope(name)####
+*	**newScope(name)**
 Generates new log scope. Returns a new child log object which will add messages into the parent list but marked with the scope name.  Scopes can be nested.
 
 
