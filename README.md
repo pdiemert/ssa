@@ -222,6 +222,7 @@ For http requests, the response code expected. (optional)
 The number of times to repeat the test.  Every response is stored in the responses array described below. (optional)
 ####expect
 Either a function or an object. If a function then this function is called after the setup function and any http request to test some expectation.  If an object then each property value is expected to be a function with the property name used as a description name of the expectation.
+
 ####follow
 For REST style of interfaces. Can be either:
 
