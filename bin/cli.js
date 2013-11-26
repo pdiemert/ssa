@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 ;(function ()
 { // wrapper in case we're in module_context mode
-
 // windows: running "ssa blah" in this folder will invoke WSH, not node.
     if (typeof WScript !== "undefined")
     {
