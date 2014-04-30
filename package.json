@@ -1,11 +1,11 @@
 {
 	"name": "ssa",
-	"version": "0.1.26",
+	"version": "0.1.27",
 	"description": "Stupid Simple Async - a testing framework",
 	"author": "Pete Diemert <pete_diemert@msn.com>",
 	"dependencies": {
 		"eyes": ">= 0.1.6",
-		"request": ">= 2.9.152",
+		"request": "2.34.0",
 		"node-assert-extras": ">= 0.1.0",
 		"underscore": ">= 1.3.1",
 		"findit": "0.1.2"
